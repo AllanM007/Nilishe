@@ -11,6 +11,12 @@ TOPPING_CHOICES = [
     ('Mushrooms', 'Mushrooms'),
 ]
 
+PIZZA_CHOICES = [
+    ('Small', 'Small'),
+    ('Medium', 'Medium'),
+    ('Large', 'Large'),
+]
+
 SAUCE_CHOICES = [
     ('BBQ Sauce', 'BBQ Sauce'),
     ('Ranch Sauce', 'Ranch Sauce'),
@@ -20,8 +26,9 @@ SAUCE_CHOICES = [
 ]
 
 class PizzaForm(forms.Form):
-	topping = forms.ChoiceField(choices=TOPPING_CHOICES, widget=forms.RadioSelect())
-	sauce = forms.ChoiceField(choices=SAUCE_CHOICES, widget=forms.RadioSelect())
+    name = forms.ChoiceField(choices=PIZZA_CHOICES)
+    topping = forms.ChoiceField(choices=TOPPING_CHOICES)
+    sauce = forms.ChoiceField(choices=SAUCE_CHOICES)
 
 	#class Meta:
 	#	model = Pizza

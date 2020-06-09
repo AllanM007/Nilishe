@@ -6,20 +6,32 @@ from .forms import PizzaForm
 def menu(request):
 	pizzas = Pizza.objects.all()
 	
+	form = PizzaForm()
+
 	context = {
         'pizzas':pizzas,
+		'form':form,
     }
 	return render(request, 'menu/menu.html', context)
 
-def pizza(request, pk):
+def pizza(request):
 
-	form = PizzaForm()
+	if request.method == 'POST':
+		
+		form = PizzaForm(request.POST)
 
-	pizza = Pizza.objects.get(pk = pk)
-	
+		if form.is_valid():
+			pizza = Pizza(
+                name=form.cleaned_data["name"],
+                topping=form.cleaned_data["topping"],
+                sauce=form.cleaned_data["sauce"],
+            )
+			pizza.save()
+	else:
+		form = PizzaForm()
+
 	context = {
-        'pizza':pizza,
         'form':form,
     }
 
-	return render(request, 'menu/pizza.html', context)
+	return render(request, 'menu/pizza.html', {'form':form})
