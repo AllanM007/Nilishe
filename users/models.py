@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=20, blank=True)
     joined = models.DateField(null=True)
     address = models.CharField(max_length=100, null=True)
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     rating = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(5)])
     slug = models.SlugField(null=True, blank=True, unique=True)
     profurl = models.URLField(null=True, blank=True)
