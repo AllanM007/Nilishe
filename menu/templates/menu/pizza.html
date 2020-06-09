@@ -7,21 +7,13 @@
 	<title>Pick A Pizza</title>
 </head>
 <body>
-	<div class="card" style="width: 18rem;">
-		<img src="{{ pizza.image.url }}" alt="Card image cap">
-		<div class="card-body">
-			<h5 class="card-title">{{ pizza.name }}</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<a href="" class="btn btn-primary">Go somewhere</a>
-		</div>
-	</div>
 	<form method="POST">
 		{% csrf_token %}
 		<div class="form-group col-4">
 			{{ form|crispy }}
 		</div>
 		<button type="submit" class="btn btn-primary">
-			<span class="glyphicon glyphicon-send"></span> Send
+			<span class="glyphicon glyphicon-send"></span> Submit
 		</button>
 	</form>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

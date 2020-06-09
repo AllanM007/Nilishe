@@ -1,6 +1,6 @@
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import Pizza
-from django.contrib.auth.models import User
 from django import forms
 
 TOPPING_CHOICES = [
@@ -26,10 +26,6 @@ SAUCE_CHOICES = [
 ]
 
 class PizzaForm(forms.Form):
-    name = forms.ChoiceField(choices=PIZZA_CHOICES)
+    size = forms.ChoiceField(choices=PIZZA_CHOICES)
     topping = forms.ChoiceField(choices=TOPPING_CHOICES)
     sauce = forms.ChoiceField(choices=SAUCE_CHOICES)
-
-	#class Meta:
-	#	model = Pizza
-	#	fields = ['name']
