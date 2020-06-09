@@ -1,0 +1,88 @@
+body {
+    background-color: #fbfbfb;
+}
+.login-form {
+    font-family: arial;
+    color: #333;
+} 
+.login-form form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px 30px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.login-form h2 {
+    text-align: center;
+    font-size: 35px;
+    margin: 10px 0px 40px;
+}
+.login-form input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    height: 45px;
+    margin: 0px 0px 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+.login-form button {
+    margin: 10px auto 30px;
+    display: table;
+    font-size: 20px;
+    padding: 10px 30px;
+    background-color: #cc0000;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.login-form button:hover{
+  opacity: 0.8;
+  color: #fff;
+}
+.login-form input[type="url"] {
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+    float: left;
+}
+.login-form .forget-psw {
+    float: right;
+}
+.login-form .forget-psw a {
+    color: #2196F3;
+    text-decoration: none;
+}
+.social-btn button.google-btn, .social-btn button.facebook-btn {
+    width: 100%;
+    font-size: 18px;
+    margin: 0px 0px 10px;
+}
+.social-btn button.google-btn{
+  background-color: #cc3300;
+}
+.social-btn button.facebook-btn{
+  background-color: #3f68be;
+}
+.social-btn {
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+.social-btn button i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+@media (max-width: 767px){
+.login-form form {
+    width: 90%;
+    padding: 20px 15px 20px;
+}
+.social-btn button.google-btn, .social-btn button.facebook-btn {
+    font-size: 15px;
+}
+} 
