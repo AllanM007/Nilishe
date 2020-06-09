@@ -1,5 +1,3 @@
-from django.template.defaultfilters import slugify
-from django.utils.text import slugify
 from django.db import models
 from PIL import Image
 import uuid
@@ -7,7 +5,7 @@ import uuid
 
 class Pizza(models.Model):
     name = models.CharField(max_length=20, blank=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='default.jpg', upload_to='pics')
     amount = models.IntegerField(null=True)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
 
