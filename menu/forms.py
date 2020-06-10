@@ -29,3 +29,4 @@ class PizzaForm(forms.Form):
     size = forms.ChoiceField(choices=PIZZA_CHOICES)
     topping = forms.ChoiceField(choices=TOPPING_CHOICES)
     sauce = forms.ChoiceField(choices=SAUCE_CHOICES)
+    

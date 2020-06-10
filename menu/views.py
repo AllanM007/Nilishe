@@ -53,6 +53,7 @@ def cart(request):
 	topping = request.session['test2']
 	sauce = request.session['test3']
 	
+	
 	context={
         'size':size,
 		'topping':topping,
