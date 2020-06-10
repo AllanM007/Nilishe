@@ -10,4 +10,4 @@ class Pizza(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.size
