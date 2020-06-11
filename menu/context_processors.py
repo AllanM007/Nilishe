@@ -10,7 +10,6 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
 
     cart_items = []
-    total = 0
     pizza_count = 0
     
     for id in cart.items():
