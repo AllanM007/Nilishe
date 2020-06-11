@@ -23,7 +23,7 @@ def log_in(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect(reverse('chat:index'))
+            return redirect(reverse('menu:menu'))
         else:
             print(form.errors)
     return render(request, 'users/login.html', {'form': form})

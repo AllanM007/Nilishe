@@ -19,9 +19,9 @@
 
     {{ form|crispy }}
 
-    <button class="btn" type='submit'>Log In</button>
+    <button class="btn btn-primary" type='submit'>Log In</button>
 
-    <label class="remember-me"><a class="ml-2" href="{% url 'signup' %}">Sign Up!</a></label>
+    <label class="remember-me"><a class="ml-2" href="{% url 'users:signup' %}">Sign Up!</a></label>
 
   </form>
 </div>
