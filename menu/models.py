@@ -1,9 +1,11 @@
+from users.models import UserProfile
 from django.db import models
 import uuid
 
 
 class Pizza(models.Model):
     size = models.CharField(max_length=20, blank=True)
+    image = models.ImageField(upload_to='images', null=True)
     amount = models.IntegerField(null=True)
     topping = models.CharField(max_length=20, blank=True)
     sauce = models.CharField(max_length=20, blank=True)
