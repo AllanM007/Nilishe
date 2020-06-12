@@ -26,6 +26,7 @@
 						Quantity: <a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
 						<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
 					</div>
+					<a href="#"><button class="btn btn-primary">Checkout</button></a>
 				</div>
 			{% empty %}
 				<div>

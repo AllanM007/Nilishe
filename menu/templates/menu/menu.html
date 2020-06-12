@@ -15,6 +15,7 @@
       <div class="card-body">
         <h5 class="card-title">Size - {{ pizza.size }}</h5>
         <p class="card-text">Topping - {{ pizza.topping }}</p>
+        <p class="card-text">Topping - {{ pizza.sauce }}</p>
         <a href="{% url 'menu:add_to_cart' pizza.id %}"><button class="btn btn-primary">Add to Cart</button></a>
       </div>
       <div class="card-footer">

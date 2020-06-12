@@ -50,19 +50,16 @@ def add_to_cart(request, pizza_id):
     messages.success(request, "Cart updated!")
     return redirect('menu:cart')
 
-
+@login_required
 def remove_from_cart(request, pizza_id):
-    if request.user.is_authenticated():
-        try:
-            pizza = Pizza.objects.get(pk = pizza_id)
-        except ObjectDoesNotExist:
-            pass 
-        else:
-        	cart = Cart.objects.get(user = request.user, active = True)
-        	cart.remove_from_cart(pizza_id)
-        return redirect('menu:cart')
+    try:
+        pizza = Pizza.objects.get(pk = pizza_id)
+    except ObjectDoesNotExist:
+        pass 
     else:
-        return redirect('index')
+        cart = Cart.objects.get(user = request.user, active = True)
+        cart.remove_from_cart(pizza_id)
+    return redirect('menu:cart')
 
 
 def cart(request):
