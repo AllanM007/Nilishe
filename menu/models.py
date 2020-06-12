@@ -7,6 +7,7 @@ import uuid
 class Pizza(models.Model):
     size = models.CharField(max_length=20, blank=True)
     image = models.ImageField(upload_to='images', null=True)
+    price = models.IntegerField(null=True)
     topping = models.CharField(max_length=20, blank=True)
     sauce = models.CharField(max_length=20, blank=True)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
@@ -18,7 +19,7 @@ class Cart(models.Model):
     #store = models.ForeignKey(Pizza, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     active = models.BooleanField(default=True)
-    order_date = models.DateField(null=True)
+    order_date = models.DateField(auto_now_add=True, null=True)
     
     def __unicode__(self): 
         return "%s" % (self.user)

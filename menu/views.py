@@ -41,7 +41,7 @@ def pizza(request):
 	return render(request, 'menu/pizza.html', {'form':form})
 
 @login_required
-def add_to_cart(request,pizza_id):
+def add_to_cart(request, pizza_id):
     pizza = get_object_or_404(Pizza, pk=pizza_id)
     cart,created = Cart.objects.get_or_create(user=request.user)
     order,created = PizzaOrder.objects.get_or_create(pizza=pizza,cart=cart)
@@ -66,7 +66,7 @@ def remove_from_cart(request, pizza_id):
 
 
 def cart(request):
-    cart = Cart.objects.filter(user=request.user.id)
+    cart = Cart.objects.get(user=request.user.id)
     orders = PizzaOrder.objects.filter(cart=cart)
     total = 0
     count = 0
