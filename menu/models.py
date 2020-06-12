@@ -16,7 +16,6 @@ class Pizza(models.Model):
         return self.size
 
 class Cart(models.Model):
-    #store = models.ForeignKey(Pizza, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     active = models.BooleanField(default=True)
     order_date = models.DateField(auto_now_add=True, null=True)
