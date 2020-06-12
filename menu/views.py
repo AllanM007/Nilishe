@@ -59,6 +59,7 @@ def remove_from_cart(request, pizza_id):
     else:
         cart = Cart.objects.get(user = request.user, active = True)
         cart.remove_from_cart(pizza_id)
+    messages.success(request, "Item removed!")
     return redirect('menu:cart')
 
 
