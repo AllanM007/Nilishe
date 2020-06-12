@@ -29,9 +29,12 @@
 						<span>{{ item.pizza.sauce }}</span><br>
 					</div>
 					<div class="cart_price">
-						<span class="cart_quantity">{{ item.quantity }} x $<span class="cart_value">{{ item.pizza.price }}</span></span>
+						<span class="cart_quantity">{{ item.quantity }} x ksh <span class="cart_value">{{ item.pizza.price }}</span></span>
 						Quantity: <a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
 						<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
+					</div>
+					<div class="cart_total">
+						<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
 					</div>
 					<a href="#"><button class="btn btn-primary">Checkout</button></a>
 				</div>
