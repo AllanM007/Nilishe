@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,49 +7,6 @@
   <title>Menu</title>
 </head>
 <body>
-    <nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Nilishe</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
-                        <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
-                        <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                        <li><a href="{% url 'menu:menu' %}"><i class="fa fa-cutlery"></i> Sushi Menu</a></li>
-                         <li>
-                        <a href="{% url 'menu:cart' %}"><i class="fa fa-list"></i> Order list
-                            {% if pizza_count > 0 %}
-                            <label class="badge badge-warning">{{ pizza_count }}</label>
-                            {% endif %}
-                    {%  else %}
-                        <li><a href="{% url 'users:register' %}"><i class="fa fa-user-plus"></i> Register</a></li>
-                        <li><a href="{% url 'users:login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
-                    {% endif %}
-                   
-                            
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% if messages %}
-        <div class="alert alert-success">
-            <div class="messages">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
 <div class="row row-cols-1 row-cols-md-3">
     {% for pizza in pizzas %}
   <div class="col mb-4">

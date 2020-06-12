@@ -6,6 +6,6 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('pizza/', views.pizza, name='pizza'),
     path('cart/', views.cart, name='cart'),
-    path('add/<int:id>', views.add_to_cart, name='add_to_cart'),
-    path('adjust/<int:id>', views.adjust_cart, name='adjust_cart'),
+    path('add/<int:pizza_id>', views.add_to_cart, name='add_to_cart'),
+    path('remove/<int:pizza_id>', views.remove_from_cart, name='remove_from_cart'),
 ]
