@@ -77,6 +77,7 @@ def cart(request):
     #Indentation needs to be offset by one level from here on
     context = {
         'cart': orders,
+        'unit': unit,
         'total': total,
         'count': count,
     }
