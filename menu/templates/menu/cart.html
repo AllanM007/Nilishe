@@ -36,7 +36,7 @@
 					<div class="cart_total">
 						<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
 					</div>
-					<a href="{% url 'chat:room' item.pizza.uuid %}"><button class="btn btn-primary">Checkout</button></a>
+					<a href="{% url 'chat:room' item.uuid %}"><button class="btn btn-primary">Checkout</button></a>
 				</div>
 			{% empty %}
 				<div>
