@@ -73,7 +73,8 @@ def cart(request):
         total += order.pizza.price * order.quantity
         count += order.quantity
     
-    unit = str(orders)
+    unit = [str(o) for o in orders]
+    #unit = orders
     #Indentation needs to be offset by one level from here on
     context = {
         'cart': orders,
