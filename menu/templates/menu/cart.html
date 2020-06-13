@@ -32,7 +32,7 @@
 						<span class="cart_quantity">{{ item.quantity }} x ksh <span class="cart_value">{{ item.pizza.price }}</span></span>
 						Quantity: <a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
 						<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
-					</div>
+					</div><br>
 					<h4>Your order number is : {{ item.uuid }}</h4>
 				</div>
 			{% empty %}
@@ -43,9 +43,9 @@
 			<div class="cart_total">
 				<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
 			</div><br>
-			{% if cart %}
-			<a href=""><button class="btn btn-primary">Checkout</button></a><br>
-			{% endif %}
+			{% for item in cart %}
+			<a href="{% url 'chat:room' item.pizza.pk %}"><button class="btn btn-primary">Checkout</button></a><br>
+			{% endfor %}
 		</div>
 		</div>
 	</div>
