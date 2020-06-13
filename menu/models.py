@@ -37,7 +37,7 @@ class Cart(models.Model):
 class PizzaOrder(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    uuid = models.UUIDField(default=uuid.uuid4().hex[:6].upper(), unique=True)
     quantity = models.IntegerField(default=0)
     
     def __unicode__(self): 

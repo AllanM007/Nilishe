@@ -5,7 +5,7 @@ from django.urls import reverse
 from .models import Pizza, Cart, PizzaOrder
 from django.contrib import messages
 from .forms import PizzaForm
-
+import uuid
 
 def menu(request):
 	pizzas = Pizza.objects.all()
@@ -75,6 +75,9 @@ def cart(request):
     
     unit = [str(o) for o in orders]
     #unit = orders
+
+    id = uuid.uuid4().hex[:32].upper()
+    print(id)
     #Indentation needs to be offset by one level from here on
     context = {
         'cart': orders,
