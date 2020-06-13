@@ -10,7 +10,6 @@ class Pizza(models.Model):
     price = models.IntegerField(null=True)
     topping = models.CharField(max_length=20, blank=True)
     sauce = models.CharField(max_length=20, blank=True)
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
 
     def __str__(self):
         return self.size
@@ -36,9 +35,10 @@ class Cart(models.Model):
             pass
 
 class PizzaOrder(models.Model):
-	pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-	cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-	quantity = models.IntegerField(default=0)
-
-	def __unicode__(self): 
-		return "%s, %s, %s" % (self.pizza, self.cart, self.quantity)
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    quantity = models.IntegerField(default=0)
+    
+    def __unicode__(self): 
+        return "%s, %s, %s" % (self.pizza, self.cart, self.quantity)
