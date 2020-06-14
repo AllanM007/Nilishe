@@ -20,6 +20,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 from . import views
+from chat.views import map
+from users.models import UserProfile
 
 urlpatterns = [
     path('chat/', include(('chat.urls', 'home'), namespace='chat')),
@@ -28,5 +30,6 @@ urlpatterns = [
     path('', include(('users.urls', 'users'), namespace='users')),
     path('', include(('menu.urls', 'menu'), namespace='menu')),
     path('', views.index, name='index'),
-    #path('data.geojson/', GeoJSONLayerView.as_view(model=Shop), name='data'),
+    path('map/', map, name='map'),
+    path('data.geojson/', GeoJSONLayerView.as_view(model=UserProfile), name='data'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
