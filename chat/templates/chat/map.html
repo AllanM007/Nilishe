@@ -21,6 +21,18 @@
 </div>
 <script type="text/javascript">
 
+    navigator.geolocation.getCurrentPosition(function(location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+        
+        var mymap = L.map('mapid').setView(latlng, 13)
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+        
+        var marker = L.marker(latlng).addTo(mymap);
+    });
+
     var counties = $.ajax({
         url: "{% url 'data' %}",
         dataType: "json",
@@ -28,18 +40,7 @@
         error: function(xhr) {
             alert(xhr.statusText)
         }
-     })
-
-    $.when(counties).done(function() {
-        var map = L.map('mapid')
-        .setView([25.7504642, -80.2501864], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var kyCounties = L.geoJSON(counties.responseJSON).addTo(map);
-    });
+    })
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
