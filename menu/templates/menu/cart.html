@@ -33,7 +33,7 @@
 						Quantity: <a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
 						<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
 					</div><br>
-					<h4>Your order number is : {{ item.uuid }}</h4>
+					<h4>Your order number is : {{ ident.identifier }}</h4>
 				</div>
 			{% empty %}
 				<div>
@@ -44,7 +44,7 @@
 				<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
 			</div><br>
 			{% for item in cart %}
-			<a href="{% url 'chat:room' item.pizza.pk %}"><button class="btn btn-primary">Checkout</button></a><br>
+			<a href="{% url 'chat:room' ident.identifier %}"><button class="btn btn-primary">Checkout</button></a><br>
 			{% endfor %}
 		</div>
 		</div>

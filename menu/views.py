@@ -73,15 +73,10 @@ def cart(request):
         total += order.pizza.price * order.quantity
         count += order.quantity
     
-    unit = [str(o) for o in orders]
-    #unit = orders
-
-    id = uuid.uuid4().hex[:32].upper()
-    print(id)
     #Indentation needs to be offset by one level from here on
     context = {
+        'ident': cart,
         'cart': orders,
-        'unit': unit,
         'total': total,
         'count': count,
     }

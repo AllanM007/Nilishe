@@ -3,6 +3,8 @@ from users.models import UserProfile
 from django.db import models
 import uuid
 
+def hex_uuid():
+    return uuid.uuid4().hex
 
 class Pizza(models.Model):
     size = models.CharField(max_length=20, blank=True)
@@ -18,6 +20,7 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     active = models.BooleanField(default=True)
     order_date = models.DateField(auto_now_add=True, null=True)
+    identifier = models.CharField(default=hex_uuid, max_length=40, blank=True)
     
     def __unicode__(self): 
         return "%s" % (self.user)
@@ -37,7 +40,6 @@ class Cart(models.Model):
 class PizzaOrder(models.Model):
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    uuid = models.UUIDField(default=uuid.uuid4().hex[:6].upper(), unique=True)
     quantity = models.IntegerField(default=0)
     
     def __unicode__(self): 
