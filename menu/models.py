@@ -4,7 +4,7 @@ from django.db import models
 import uuid
 
 def hex_uuid():
-    return uuid.uuid4().hex
+    return uuid.uuid4().hex[:6].upper()
 
 class Pizza(models.Model):
     size = models.CharField(max_length=20, blank=True)
