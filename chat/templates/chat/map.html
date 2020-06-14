@@ -26,6 +26,8 @@
         
         var radius = location.accuracy;
 
+        //var radius = {radius: 3000};
+
         var mymap = L.map('mapid').setView(latlng, 13)
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,7 +37,7 @@
         var marker = L.marker(latlng).addTo(mymap)
         .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-        L.circle(location.latlng, radius).addTo(mymap);
+        L.circle(latlng, radius).addTo(mymap);
     });
 
     var counties = $.ajax({
