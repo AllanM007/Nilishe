@@ -58,8 +58,6 @@
         mapSocket.onclose = function(e) {
             console.error('Map socket closed unexpectedly');
         };
-        
-        window.dispatchEvent(new Event('resize'));
 
         window.onload = (event) => {
             mapSocket.send(JSON.stringify({
