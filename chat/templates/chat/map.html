@@ -16,6 +16,7 @@
 </head>
 <body>
 <h1>Map</h1>
+<button class="btn btn-primary" id="location-submit">Share Location</button>
 <div class='iframe-container'>
     <div id="mapid"></div>
 </div>
@@ -26,8 +27,6 @@
         var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
         
         var radius = 1000;
-
-        console.log(latlng);
 
         var mymap = L.map('mapid').setView(latlng, 14)
         
@@ -59,10 +58,21 @@
             console.error('Map socket closed unexpectedly');
         };
 
+        //document.querySelector('#location-submit').onclick = function(e) {
+        //    const messageInputDom = document.querySelector('#chat-message-input');
+        //    const message = messageInputDom.value;
+        //    chatSocket.send(JSON.stringify({
+        //        'message': message
+        //    }));
+        //    messageInputDom.value = '';
+        //};
+
         window.onload = (event) => {
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
             }));
+
+            console.log(JSON.stringify(latlng));
             
             console.log('map data sent');
         };

@@ -92,6 +92,9 @@
             chatSocket.send(JSON.stringify({
                 'message': message
             }));
+
+            console.log(JSON.stringify(message));
+            
             messageInputDom.value = '';
         };
     </script>
