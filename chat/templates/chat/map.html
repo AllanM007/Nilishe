@@ -16,6 +16,8 @@
 </head>
 <body>
 <h1>Map</h1>
+<!--div id="mapid" style="height: 400px; width: 96%; margin: 1em auto 1.2em;"></div-->
+
 <div class='iframe-container'>
     <div id="mapid"></div>
 </div>
@@ -59,6 +61,8 @@
             console.error('Map socket closed unexpectedly');
         };
         
+        window.dispatchEvent(new Event('resize'));
+
         window.onload = (event) => {
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
