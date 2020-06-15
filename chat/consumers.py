@@ -69,8 +69,8 @@ class MapConsumer(AsyncWebsocketConsumer):
         )
 
     # Receive message from WebSocket
-    async def receive(self, text_data):
-        text_data_json = json.loads(text_data)
+    async def receive(self, map_data):
+        text_data_json = json.loads(map_data)
         latlng = text_data_json['latlng']
 
         # Send message to room group
@@ -87,6 +87,6 @@ class MapConsumer(AsyncWebsocketConsumer):
         latlng = event['latlng']
 
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({
+        await self.send(map_data=json.dumps({
             'latlng': latlng
         }))
