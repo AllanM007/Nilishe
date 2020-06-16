@@ -16,14 +16,14 @@
 </head>
 <body>
 <h1>Map</h1>
-<button class="btn btn-primary" id="location-submit">Share Location</button>
+<!--button class="btn btn-primary" id="location-submit">Share Location</button-->
 <div class='iframe-container'>
     <div id="mapid"></div>
 </div>
 {{ room_name|json_script:"room-name" }}
 <script type="text/javascript">
 
-    navigator.geolocation.getCurrentPosition(function(location) {
+    navigator.geolocation.watchPosition(function(location) {
         var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
         
         var radius = 1000;
@@ -39,7 +39,7 @@
 
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
-        console.log(latlng);
+        console.log(JSON.stringify(latlng));
 
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
