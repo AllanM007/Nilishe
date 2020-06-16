@@ -15,7 +15,9 @@
     <title>Map | Demo</title>
 </head>
 <body>
-<h1>Map</h1>
+<style>
+</style>
+    <h1>Map</h1>
 <!--button class="btn btn-primary" id="location-submit">Share Location</button-->
 <div class='iframe-container'>
     <div id="mapid"></div>
@@ -28,7 +30,7 @@
         
         var radius = 1000;
 
-        var mymap = L.map('mapid').setView(latlng, 14)
+        var mymap = L.map('mapid').setView(latlng, 14).invalidateSize();
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -70,14 +72,14 @@
             console.log('map data sent');
         };
 
-        document.querySelector('#location-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('latlng');
-            const message = messageInputDom.value;
-            mapSocket.send(JSON.stringify({
-                'latlng': latlng
-            }));
-            messageInputDom.value = '';
-        };
+        //document.querySelector('#location-submit').onclick = function(e) {
+        //    const messageInputDom = document.querySelector('latlng');
+        //    const message = messageInputDom.value;
+        //    mapSocket.send(JSON.stringify({
+        //        'latlng': latlng
+        //    }));
+        //    messageInputDom.value = '';
+        //};
 
     });
 </script>
