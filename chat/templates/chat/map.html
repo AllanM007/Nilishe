@@ -39,6 +39,8 @@
 
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
+        console.log(latlng);
+
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const mapSocket = new WebSocket(
@@ -58,15 +60,6 @@
             console.error('Map socket closed unexpectedly');
         };
 
-        //document.querySelector('#location-submit').onclick = function(e) {
-        //    const messageInputDom = document.querySelector('#location-input');
-        //    const message = messageInputDom.value;
-        //    chatSocket.send(JSON.stringify({
-        //        'message': message
-        //    }));
-        //    messageInputDom.value = '';
-        //};
-
         window.onload = (event) => {
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
@@ -76,6 +69,16 @@
             
             console.log('map data sent');
         };
+
+        document.querySelector('#location-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('latlng');
+            const message = messageInputDom.value;
+            mapSocket.send(JSON.stringify({
+                'latlng': latlng
+            }));
+            messageInputDom.value = '';
+        };
+
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

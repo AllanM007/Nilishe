@@ -13,7 +13,7 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-@login_required
+#@login_required
 def map(request, room_name):
 
 	return render(request, 'chat/map.html', {
