@@ -35,7 +35,7 @@
         }).addTo(mymap);
 
         var marker = L.marker(latlng).addTo(mymap)
-        .bindPopup("You're delivery is within " + radius + " meters of your area").openPopup();
+        .bindPopup("Your delivery is within " + radius + " meters of your area").openPopup();
 
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
