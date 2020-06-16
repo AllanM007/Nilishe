@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                #'menu.context_processors.cart_contents',
+                #'menu.context_processors.cart_contents', #when enabled templates raised 404 error
             ],
         },
     },
