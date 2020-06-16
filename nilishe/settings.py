@@ -149,13 +149,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
-LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (-.023, 36.87),
-    'DEFAULT_ZOOM': 5,
-    'MAX_ZOOM': 20,
-    'MIN_ZOOM':3,
-    'SCALE': 'both',
-    'ATTRIBUTION_PREFIX': 'Made with love by Allan 😃'
-}
