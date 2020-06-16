@@ -150,9 +150,6 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
-GEOS_LIBRARY_PATH = environ.get('GEOS_LIBRARY_PATH')
-
 SERIALIZATION_MODULES = {
     'geojson': 'djgeojson.serializers'
 }
