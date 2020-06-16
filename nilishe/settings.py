@@ -150,10 +150,6 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-SERIALIZATION_MODULES = {
-    'geojson': 'djgeojson.serializers'
-}
-
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (-.023, 36.87),
