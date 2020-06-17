@@ -18,11 +18,61 @@
 <style>
 </style>
     <h1>Map</h1>
-<!--button class="btn btn-primary" id="location-submit">Share Location</button-->
+<button id="location-submit" onclick="getLocation()">Share Location</button>
+
+<p id="demo"></p>
 <div class='iframe-container'>
     <div id="mapid"></div>
 </div>
 {{ room_name|json_script:"room-name" }}
+<!--script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const mapSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/map/'
+            + roomName
+            + '/'
+        );
+
+        var x = document.getElementById("demo");
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;
+        }
+
+        var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
+
+        console.log(latlng)
+        
+        mapSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#demo').value += (data.x + '\n');
+        };
+
+        mapSocket.onclose = function(e) {
+            console.error('Map socket closed unexpectedly');
+        };
+
+        window.onload = (event) => {
+            mapSocket.send(JSON.stringify({
+                'x': x
+            }));
+
+            console.log(JSON.stringify(x));
+            
+            console.log('map data sent');
+        };
+</script-->
 <script type="text/javascript">
 
     navigator.geolocation.watchPosition(function(location) {
