@@ -50,14 +50,6 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mymap);
-
-        var marker = (function() {
-            for (let index = 0; index < deliveries.length; index++) {
-                L.marker([deliveries[index].lat, deliveries[index].lon])
-                .bindPopup("Your delivery is within " + radius + " meters of your area")
-                .addTo(mymap);
-            }
-        })();
         
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
@@ -65,7 +57,15 @@
 
         mapSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#mapid').value += (data.latlng + '\n');
+            //document.querySelector('#mapid').value += (data.latlng + '\n');
+            
+            var marker = (function() {
+            for (let index = 0; index < deliveries.length; index++) {
+                L.marker([deliveries[index].lat, deliveries[index].lon])
+                .bindPopup("Your delivery is within " + radius + " meters of your area")
+                .addTo(mymap);
+            }
+        })();
         };
 
         mapSocket.onclose = function(e) {
