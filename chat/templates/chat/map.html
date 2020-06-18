@@ -18,7 +18,7 @@
 <style>
 </style>
     <h1>Map</h1>
-<button class="btn btn-primary" id="location-submit" onclick="getLocation()">Share Location</button>
+<!--button class="btn btn-primary" id="location-submit" onclick="getLocation()">Share Location</button-->
 <p id="demo"></p>
 <div class='iframe-container'>
     <div id="mapid"></div>
@@ -27,6 +27,16 @@
 <script type="text/javascript">
 
     navigator.geolocation.watchPosition(function(location) {
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const mapSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/map/'
+            + roomName
+            + '/'
+        );
+        
         var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
         var radius = 1000;
@@ -52,16 +62,6 @@
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
         console.log(latlng);
-
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
-        const mapSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/map/'
-            + roomName
-            + '/'
-        );
 
         mapSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
