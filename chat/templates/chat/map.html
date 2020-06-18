@@ -24,12 +24,16 @@
     <div id="mapid"></div>
 </div>
 {{ room_name|json_script:"room-name" }}
-<!--script type="text/javascript">
+<script type="text/javascript">
 
     navigator.geolocation.watchPosition(function(location) {
         var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
         var radius = 1000;
+
+        var deliveries = [
+            { "lat": location.coords.latitude, "lon": location.coords.longitude},
+        ];
 
         var mymap = L.map('mapid').setView(latlng, 14).invalidateSize();
         
@@ -37,12 +41,17 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mymap);
 
-        var marker = L.marker(latlng).addTo(mymap)
-        .bindPopup("Your delivery is within " + radius + " meters of your area").openPopup();
-
+        var marker = (function() {
+            for (let index = 0; index < deliveries.length; index++) {
+                L.marker([deliveries[index].lat, deliveries[index].lon])
+                .bindPopup("Your delivery is within " + radius + " meters of your area")
+                .addTo(mymap);
+            }
+        })();
+        
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
-        console.log(JSON.stringify(latlng));
+        console.log(latlng);
 
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
@@ -68,7 +77,7 @@
                 'latlng': latlng
             }));
 
-            console.log(JSON.stringify(latlng));
+            console.log(latlng);
             
             console.log('map data sent');
         };
@@ -85,8 +94,8 @@
         //};
 
     });
-</script-->
-<script>
+</script>
+<!--script>
 
         var x = document.getElementById("demo");
         
@@ -101,7 +110,7 @@
             x.innerHTML = "Latitude: " + position.coords.latitude + 
             "<br>Longitude: " + position.coords.longitude;
         }
-</script>
+</script--->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
