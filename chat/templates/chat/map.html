@@ -55,17 +55,18 @@
 
         console.log(deliveries);
 
-        mapSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            //document.querySelector('#mapid').value += (data.latlng + '\n');
-            
-            var marker = (function() {
+        var marker = (function() {
             for (let index = 0; index < deliveries.length; index++) {
                 L.marker([deliveries[index].lat, deliveries[index].lon])
                 .bindPopup("Your delivery is within " + radius + " meters of your area")
                 .addTo(mymap);
             }
         })();
+
+        mapSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(e.data);
+            //document.querySelector('#mapid').value += (data.latlng + '\n');
         };
 
         mapSocket.onclose = function(e) {
