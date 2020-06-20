@@ -51,23 +51,22 @@
 
         mapSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            console.log(data.latlng.lat);
-            L.marker([data.latlng.lat, data.latlng.lng])
+            console.log(data.latlng.lat, data.latlng.lng);
+
+            var deliveries = [
+                { "lat": location.coords.latitude, "lon": location.coords.longitude},
+                { "lat": data.latlng.lat, "lon": data.latlng.lng},
+            ];
+
+            var marker = (function() {
+            for (let index = 0; index < deliveries.length; index++) {
+                L.marker([deliveries[index].lat, deliveries[index].lon])
                 .bindPopup("Your delivery is within " + radius + " meters of your area")
                 .addTo(mymap);
+            }
+        })();
+            
         };
-
-        var deliveries = [
-            { "lat": location.coords.latitude, "lon": location.coords.longitude},
-        ];
-
-        //var marker = (function() {
-        //    for (let index = 0; index < deliveries.length; index++) {
-        //        L.marker([deliveries[index].lat, deliveries[index].lon])
-        //        .bindPopup("Your delivery is within " + radius + " meters of your area")
-        //        .addTo(mymap);
-        //    }
-        //})();
 
         mapSocket.onclose = function(e) {
             console.error('Map socket closed unexpectedly');
