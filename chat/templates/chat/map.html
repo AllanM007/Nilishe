@@ -18,8 +18,7 @@
 <style>
 </style>
     <h1>Map</h1>
-<!--button class="btn btn-primary" id="location-submit" onclick="getLocation()">Share Location</button-->
-<p id="demo"></p>
+<!--p id="demo"></p-->
 <div class='iframe-container'>
     <div id="mapid"></div>
 </div>
@@ -83,25 +82,9 @@
             console.log('map data sent');
         };
 
-        document.getElementById("demo").innerHTML = JSON.stringify(latlng);
+        //document.getElementById("demo").innerHTML = JSON.stringify(latlng);
     });
 </script>
-<!--script>
-
-        var x = document.getElementById("demo");
-        
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else { 
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-        function showPosition(position) {
-            x.innerHTML = "Latitude: " + position.coords.latitude + 
-            "<br>Longitude: " + position.coords.longitude;
-        }
-</script--->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
