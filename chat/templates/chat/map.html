@@ -41,10 +41,6 @@
 
         var radius = 1000;
 
-        var deliveries = [
-            { "lat": location.coords.latitude, "lon": location.coords.longitude},
-        ];
-
         var mymap = L.map('mapid').setView(latlng, 14)
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,20 +49,25 @@
         
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
-        console.log(deliveries);
-
-        var marker = (function() {
-            for (let index = 0; index < deliveries.length; index++) {
-                L.marker([deliveries[index].lat, deliveries[index].lon])
-                .bindPopup("Your delivery is within " + radius + " meters of your area")
-                .addTo(mymap);
-            }
-        })();
-
         mapSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            console.log(e.data);
+            console.log(data.latlng.lat);
+            L.marker([data.latlng.lat, data.latlng.lng])
+                .bindPopup("Your delivery is within " + radius + " meters of your area")
+                .addTo(mymap);
         };
+
+        var deliveries = [
+            { "lat": location.coords.latitude, "lon": location.coords.longitude},
+        ];
+
+        //var marker = (function() {
+        //    for (let index = 0; index < deliveries.length; index++) {
+        //        L.marker([deliveries[index].lat, deliveries[index].lon])
+        //        .bindPopup("Your delivery is within " + radius + " meters of your area")
+        //        .addTo(mymap);
+        //    }
+        //})();
 
         mapSocket.onclose = function(e) {
             console.error('Map socket closed unexpectedly');
