@@ -85,6 +85,10 @@
             console.error('Map socket closed unexpectedly');
         };
 
+        mapSocket.onerror = function(event) {
+            console.error("WebSocket error observed:", event);
+        };
+
         //document.getElementById("demo").innerHTML = JSON.stringify(latlng);
     });
 </script>
