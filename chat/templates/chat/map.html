@@ -29,7 +29,7 @@
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const mapSocket = new WebSocket(
-            'ws://'
+            'wss://'
             + window.location.host
             + '/ws/map/'
             + roomName
