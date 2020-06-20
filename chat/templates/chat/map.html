@@ -52,7 +52,7 @@
         
         L.circle(latlng).addTo(mymap).setRadius(radius);
 
-        window.onload = (event) => {
+        mapSocket.onopen = function (event) {
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
             }));
