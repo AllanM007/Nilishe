@@ -29,7 +29,7 @@
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const mapSocket = new WebSocket(
-            'wss://'
+            'ws://'
             + window.location.host
             + '/ws/map/'
             + roomName
@@ -56,10 +56,6 @@
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
             }));
-
-            console.log(latlng);
-            
-            console.log('map data sent');
         };
         
         mapSocket.onmessage = function(e) {
