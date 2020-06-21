@@ -56,6 +56,10 @@
             mapSocket.send(JSON.stringify({
                 'latlng': latlng
             }));
+
+            console.log(latlng);
+            
+            console.log('map data sent');
         };
         
         mapSocket.onmessage = function(e) {
