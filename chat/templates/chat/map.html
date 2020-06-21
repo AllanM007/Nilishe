@@ -28,7 +28,7 @@
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const mapSocket = new WebSocket(
-            'ws://'
+            'wss://'
             + window.location.host
             + '/ws/map/'
             + roomName
@@ -67,7 +67,6 @@
 
             var deliveries = [
                 { "lat": location.coords.latitude, "lon": location.coords.longitude},
-                //{"lat":-1.2877824,"lon":36.8345088},
                 { "lat": data.latlng.lat, "lon": data.latlng.lng},
             ];
 
@@ -79,9 +78,14 @@
                 }
             })();
 
-            var polyline = L.polyline(latlng, {color: 'red'}).addTo(mymap);
+            var latlngs = [
+                [deliveries[0].lat, deliveries[0].lon],
+                [deliveries[1].lat, deliveries[1].lon]
+            ];
             
-            map.fitBounds(polyline.getBounds());
+            var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
+            
+            mymap.fitBounds(polyline.getBounds());
         };
 
         mapSocket.onclose = function(e) {
