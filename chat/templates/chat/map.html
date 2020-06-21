@@ -78,6 +78,10 @@
                 .addTo(mymap);
                 }
             })();
+
+            var polyline = L.polyline(latlng, {color: 'red'}).addTo(mymap);
+            
+            map.fitBounds(polyline.getBounds());
         };
 
         mapSocket.onclose = function(e) {
