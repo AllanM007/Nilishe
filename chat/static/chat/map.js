@@ -2,7 +2,7 @@ navigator.geolocation.watchPosition(function(location) {
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
     const mapSocket = new WebSocket(
-        'wss://'
+        'ws://'
         + window.location.host
         + '/ws/map/'
         + roomName
