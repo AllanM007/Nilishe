@@ -55,8 +55,8 @@ mapSocket.onerror = function(event) {
 
 var map = L.map('mapid'),
     realtime = L.realtime({
-        //url: 'https://wanderdrone.appspot.com/',
-        url: uRL,
+        url: 'https://wanderdrone.appspot.com/',
+        //url: uRL,
         crossOrigin: true,
         type: 'json'
     }, {
