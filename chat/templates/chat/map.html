@@ -12,6 +12,8 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
     <title>Map | Demo</title>
 </head>
 <body>
@@ -78,14 +80,12 @@
                 }
             })();
 
-            var latlngs = [
-                [deliveries[0].lat, deliveries[0].lon],
-                [deliveries[1].lat, deliveries[1].lon]
-            ];
-            
-            var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
-            
-            mymap.fitBounds(polyline.getBounds());
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(deliveries[0].lat, deliveries[0].lon),
+                    L.latLng(deliveries[1].lat, deliveries[1].lon)
+                ]
+            }).addTo(mymap);
         };
 
         mapSocket.onclose = function(e) {
