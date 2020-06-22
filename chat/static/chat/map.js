@@ -31,8 +31,6 @@ navigator.geolocation.watchPosition(function(location) {
         }));
 
         console.log(latlng);
-        
-        console.log('map data sent');
     };
     
     mapSocket.onmessage = function(e) {
