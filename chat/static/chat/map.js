@@ -54,7 +54,7 @@ navigator.geolocation.watchPosition(function(location) {
             waypoints: [
                 L.latLng(deliveries[0].lat, deliveries[0].lon),
                 L.latLng(deliveries[1].lat, deliveries[1].lon)
-            ]
+            ],
         }).addTo(mymap);
     };
 
