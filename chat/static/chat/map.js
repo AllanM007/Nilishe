@@ -17,13 +17,13 @@ navigator.geolocation.watchPosition(function(location) {
 
     var radius = 1000;
 
-    var mymap = L.map('mapid').setView(latlng, 14)
+    var map = L.map('map').setView(latlng, 14)
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mymap);
+    }).addTo(map);
     
-    L.circle(latlng).addTo(mymap).setRadius(radius);
+    L.circle(latlng).addTo(map).setRadius(radius);
 
     mapSocket.onopen = function (event) {
         mapSocket.send(JSON.stringify({
@@ -46,7 +46,7 @@ navigator.geolocation.watchPosition(function(location) {
         for (let index = 0; index < deliveries.length; index++) {
             L.marker([deliveries[index].lat, deliveries[index].lon])
             .bindPopup("Your delivery is within " + radius + " meters of your area")
-            .addTo(mymap);
+            .addTo(map);
             }
         })();
 
@@ -55,7 +55,7 @@ navigator.geolocation.watchPosition(function(location) {
                 L.latLng(deliveries[0].lat, deliveries[0].lon),
                 L.latLng(deliveries[1].lat, deliveries[1].lon)
             ],
-        }).addTo(mymap);
+        }).addTo(map);
     };
 
     mapSocket.onclose = function(e) {
