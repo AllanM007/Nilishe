@@ -10,7 +10,7 @@ const mapSocket = new WebSocket(
 
 uRL = (mapSocket.url)
 
-var map = L.map('mapid'),
+var map = L.map('map'),
     realtime = L.realtime({
         url: 'https://wanderdrone.appspot.com/',
         //url: uRL,
