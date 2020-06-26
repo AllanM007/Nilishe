@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'menu',
     'chat',
     'crispy_forms',
+    'payments',
 ]
 
 MIDDLEWARE = [
