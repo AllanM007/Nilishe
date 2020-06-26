@@ -25,16 +25,21 @@
   height: 550px;
   float: right;
 }
-</style>    
-<div id="map"></div>
-<div class="messaging">
-    <div class="mesgs">
-        <h3 class=" text">Messaging for order :<span style="color: red"> {{ room_name }}</span></h3>
-        <div class="msg_history">
+</style>   
+<div class="container">
+  <div class="row"> 
+    <div class="col">
+      <div id="map"></div>
+    </div>
+    <div class="col">
+      <div class="messaging">
+        <div class="mesgs">
+          <h3 class=" text">Messaging for order :<span style="color: red"> {{ room_name }}</span></h3>
+          <div class="msg_history">
             <div class="incoming_msg">
-                <div class="received_withd_msg">
-                    <textarea id="chat-log" cols="60" rows="20"></textarea>
-                </div>
+              <div class="received_withd_msg">
+                <textarea id="chat-log" cols="60" rows="20"></textarea>
+              </div>
             </div>
           </div><br>
           <div class="type_msg">
@@ -45,7 +50,10 @@
           </div>
         </div>
       </div>      
-    </div></div>
+    </div>
+  </div>
+</div>
+</div>
 {{ room_name|json_script:"room-name" }}
 <script type="text/javascript" src="{% static 'chat/map.js' %}"></script>
 <script type="text/javascript" src="{% static 'chat/chat.js' %}"></script>
