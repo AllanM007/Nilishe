@@ -27,8 +27,28 @@
 }
 </style>    
 <div id="map"></div>
+<div class="messaging">
+    <div class="mesgs">
+        <h3 class=" text">Messaging for order :<span style="color: red"> {{ room_name }}</span></h3>
+        <div class="msg_history">
+            <div class="incoming_msg">
+                <div class="received_withd_msg">
+                    <textarea id="chat-log" cols="60" rows="20"></textarea>
+                </div>
+            </div>
+          </div><br>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <textarea type="text" id="chat-message-input" placeholder="Type a message" cols="60" rows="2"></textarea>
+              <button class="btn btn-primary" id="chat-message-submit">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div></div>
 {{ room_name|json_script:"room-name" }}
 <script type="text/javascript" src="{% static 'chat/map.js' %}"></script>
+<script type="text/javascript" src="{% static 'chat/chat.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
