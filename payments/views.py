@@ -5,9 +5,9 @@ from django.http import HttpResponseRedirect
 from requests.auth import HTTPBasicAuth
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
-from payments.models import UserProfile
+from users.models import UserProfile
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .forms import NumberForm
 from django.views import View
 from django.urls import reverse
