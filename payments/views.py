@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from requests.auth import HTTPBasicAuth
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
-from payments.models import ContractorProfile
+from payments.models import UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import NumberForm
@@ -17,7 +17,7 @@ import json
 @login_required
 def lipa_na_mpesa_online(request, pk):
 
-    contractor = ContractorProfile.objects.get(pk=pk)
+    deliver = UserProfile.objects.get(pk=pk)
 
     if request.method == "POST":
         form = NumberForm(request.POST)
@@ -55,43 +55,43 @@ def lipa_na_mpesa_online(request, pk):
 
         response = requests.post(api_url, json=request, headers=headers)
 
-        return redirect('mpesa:pc', pk=pk)
+        return redirect('payments:pc', pk=pk)
 
     else:
 
         form = NumberForm()
 
-    return render(request, 'mpesa/checkout.html', {'contractor':contractor})
+    return render(request, 'payments/checkout.html', {'deliver':deliver})
 
 @login_required
 def payment_confirmation(request,pk):
     
-    contractor = ContractorProfile.objects.get(pk=pk)
+    deliver = UserProfile.objects.get(pk=pk)
 
-    return render(request, 'mpesa/payment.html', {'contractor':contractor}) 
+    return render(request, 'payments/payment.html', {'deliver':deliver}) 
 
 @login_required
 def receipt(request, pk):
     
-    contractor = ContractorProfile.objects.get(pk=pk)
+    deliver = UserProfile.objects.get(pk=pk)
 
     amount = request.session['test']
 
     total = request.session['nambari']
 
     context={
-        'contractor':contractor,
+        'deliver':deliver,
         'amount':amount,
         'total':total
     }
 
     print(amount)
 
-    return render(request, 'mpesa/receipt.html', context) 
+    return render(request, 'payments/receipt.html', context) 
 
 def getAccessToken(request):
-	consumer_key = '9evtZaUeHplbCxTCyghipnFKWZutIUz2'
-	consumer_secret = 'MrL3r2UEbF4tnplp'
+	consumer_key = ''
+	consumer_secret = ''
 	api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
 	r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
