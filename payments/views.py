@@ -6,7 +6,9 @@ from requests.auth import HTTPBasicAuth
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from users.models import UserProfile
+from .models import MpesaPayment
 from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from .forms import NumberForm
 from django.views import View
@@ -90,8 +92,8 @@ def receipt(request, pk):
     return render(request, 'payments/receipt.html', context) 
 
 def getAccessToken(request):
-	consumer_key = ''
-	consumer_secret = ''
+	consumer_key = settings.CONSUMER_KEY
+	consumer_secret = settings.CONSUMER_SECRET
 	api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
 	r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))

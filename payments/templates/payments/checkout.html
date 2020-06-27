@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="{% static 'frontend/favicon.ico' %}"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>Checkout</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'payments/main.css' %}">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+<body>
+<section id="cover" class="min-vh-100">
+  <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+    <strong>Thank you for using our services. If you encountered any issue reach out to us, we are always ready to help 😄</strong> <a href="#">Contact Us</a>
+    <hr>
+    <h1 class="display-4 py-2 text-truncate">Payment</h1>
+    <div class="px-2">
+      <form method="POST" class="justify-content-center">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="number" class="sr-only">Number</label>
+          <input type="tel" pattern="[0-9]{12}" class="form-control" name="number" required placeholder="M-pesa Number">
+        </div>
+        <div class="form-group">
+          <label for="amount" class="sr-only">Amount</label>
+          <input type="number" class="form-control" name="amount" required placeholder="e.g ksh 1000">
+        </div>
+        <p>Please pay the amount agreed upon by both parties/ Tafathali lipa kiasi ambacho nyote mliagana</p>
+        <button id="p1" class="btn btn-primary btn-lg" >Process payment</button>
+      </form>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+	document.getElementById('p1').onclick = function(){
+		Swal.fire({
+			icon: 'success',
+			title: 'Success!',
+			text: 'Thank you for making your payment on time',
+      confirmButtonText: 'Okay',
+		})
+		};
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

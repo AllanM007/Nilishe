@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('users.urls', 'users'), namespace='users')),
     path('', include(('menu.urls', 'menu'), namespace='menu')),
+    path('', include(('payments.urls', 'payments'), namespace='payments')),
     path('', views.index, name='index'),
     path('map/<str:room_name>', map, name='map'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
