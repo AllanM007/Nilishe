@@ -43,6 +43,8 @@
 			<div class="cart_total">
 				<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
 			</div><br>
+			<article>Checkout</article>
+			<a href="{% url 'payments:lipa' user.pk %}"><button class="btn btn-primary">Checkout</button></a><br>
 			<article>Back To Menu</article>
 			<a href="{% url 'menu:menu' %}"><button class="btn btn-primary">Menu</button></a><br>
 			<article>Chat</article>
