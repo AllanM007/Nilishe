@@ -1,9 +1,11 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, ReviewForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from .models import UserProfile, Review
 from django.urls import reverse
+from .forms import ReviewForm
 
 def sign_up(request):
     form = UserCreationForm()
