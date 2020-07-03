@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'crispy_forms',
     'djgeojson',
+    'payments',
     'leaflet',
     'users',
     'menu',
     'chat',
-    'payments',
 ]
 
 MIDDLEWARE = [
