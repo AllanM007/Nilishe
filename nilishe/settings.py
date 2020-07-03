@@ -43,12 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'crispy_forms',
     'djgeojson',
     'leaflet',
     'users',
     'menu',
     'chat',
-    'crispy_forms',
     'payments',
 ]
 
