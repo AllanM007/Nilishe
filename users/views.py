@@ -1,8 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, ReviewForm
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 def sign_up(request):
@@ -33,3 +33,16 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect(reverse('users:login'))
+
+
+@login_required
+def review(request):
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect(reverse('menu:menu'))
+        else:
+            print(form.errors)
+    return render(request, 'users/login.html', {'form': form})
