@@ -35,14 +35,33 @@ def log_out(request):
     return redirect(reverse('users:login'))
 
 
-@login_required
-def review(request):
-    form = ReviewForm()
+#@login_required
+def rev_comment(request, pk):
+    
+    contractor = UserProfile.objects.get(pk=pk)
+
+    # Comment posted
     if request.method == 'POST':
-        form = ReviewForm(data=request.POST)
+        form = ReviewForm(request.POST)
         if form.is_valid():
-            login(request, form.get_user())
-            return redirect(reverse('menu:menu'))
-        else:
-            print(form.errors)
-    return render(request, 'users/login.html', {'form': form})
+            review = Review(
+                name=form.cleaned_data["name"],
+                body=form.cleaned_data["body"],
+                rating=form.cleaned_data["rating"],
+                contractor=contractor
+            )
+            review.save()
+
+            return redirect('mpesa:receipt', pk=pk)
+
+    else:
+        form = ReviewForm()
+    
+    reviews = Review.objects.filter(contractor=contractor)
+
+    context = {
+        "form": form,
+        "reviews": reviews,
+    }
+
+    return render(request, 'users/revcomment.html', context)
