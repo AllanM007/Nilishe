@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'crispy_forms',
-    'djgeojson',
+    #'djgeojson',
     'payments',
     'leaflet',
     'users',
