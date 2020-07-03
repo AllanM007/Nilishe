@@ -1,0 +1,43 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/star.css' %}" type="text/css"/>
+{% endblock %}
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+{% endblock %}
+<h3>Leave a honest review of how your experience was with our services:</h3>
+<div class="col-md-12 card mb-4  mt-3 ">
+  <div class="card-body">
+    <h1>New review</h1>
+    <form method="POST" class="post-form" style="margin-top: 1.3em;">
+      {% csrf_token %}
+      <div>
+      	{{ form.name|as_crispy_field }}
+      </div>
+      <div>
+      	{{ form.body|as_crispy_field }}
+      </div>
+      <fieldset class="rating">
+        <h6>Please rate:</h6>
+        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+      </fieldset>
+      <hr>
+      <div class="form-group">
+      	<button type="submit" class="save btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+	$(':radio').change(function() {
+		console.log('New star rating: ' + this.value);
+	});
+</script>
+{% endblock %}

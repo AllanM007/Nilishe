@@ -40,7 +40,7 @@ def log_out(request):
 #@login_required
 def rev_comment(request, pk):
     
-    contractor = UserProfile.objects.get(pk=pk)
+    user = UserProfile.objects.get(pk=pk)
 
     # Comment posted
     if request.method == 'POST':
@@ -50,16 +50,16 @@ def rev_comment(request, pk):
                 name=form.cleaned_data["name"],
                 body=form.cleaned_data["body"],
                 rating=form.cleaned_data["rating"],
-                contractor=contractor
+                user=user
             )
             review.save()
 
-            return redirect('mpesa:receipt', pk=pk)
+            return redirect('payments:receipt', pk=pk)
 
     else:
         form = ReviewForm()
     
-    reviews = Review.objects.filter(contractor=contractor)
+    reviews = Review.objects.filter(user=user)
 
     context = {
         "form": form,
