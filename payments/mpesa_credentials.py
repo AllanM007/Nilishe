@@ -1,10 +1,10 @@
-import os
-import requests
-import json
 from requests.auth import HTTPBasicAuth
 from django.conf import settings
 from datetime import datetime
+import requests
 import base64
+import json
+import os
 
 class MpesaC2bCredential:
     consumer_key = os.environ.get('CONSUMER_KEY')
@@ -14,7 +14,8 @@ class MpesaC2bCredential:
 
 class MpesaAccessToken:
     r = requests.get(MpesaC2bCredential.api_URL,auth=HTTPBasicAuth(MpesaC2bCredential.consumer_key, MpesaC2bCredential.consumer_secret))
-    mpesa_access_token = json.loads(r.text)
+    token = r.text
+    mpesa_access_token = json.loads(token)
     validated_mpesa_access_token = mpesa_access_token['access_token']
 
 class LipanaMpesaPpassword:
