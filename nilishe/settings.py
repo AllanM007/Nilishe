@@ -158,11 +158,12 @@ CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
 PASSKEY = os.getenv('PASSKEY')
 
-import dj_database_url
+#import dj_database_url
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
+#db_from_env = dj_database_url.config()
+#DATABASES['default'].update(db_from_env)
+#DATABASES['default']['CONN_MAX_AGE'] = 500
 
 import django_heroku
+
 django_heroku.settings(locals())
