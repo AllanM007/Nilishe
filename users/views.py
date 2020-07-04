@@ -37,7 +37,7 @@ def log_out(request):
     return redirect(reverse('users:login'))
 
 
-#@login_required
+@login_required
 def rev_comment(request, pk):
     
     user = UserProfile.objects.get(pk=pk)
