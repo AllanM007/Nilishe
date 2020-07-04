@@ -4,6 +4,7 @@
         "asgi",
         "djgeojson",
         "getenv",
-        "nilishe"
+        "nilishe",
+        "strftime"
     ]
 }
