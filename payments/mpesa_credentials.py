@@ -7,8 +7,8 @@ from datetime import datetime
 import base64
 
 class MpesaC2bCredential:
-    consumer_key = "MrL3r2UEbF4tnplp"
-    consumer_secret = "9evtZaUeHplbCxTCyghipnFKWZutIUz2"
+    consumer_key = os.environ.get('CONSUMER_KEY')
+    consumer_secret = os.environ.get('CONSUMER_SECRET')
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
 
@@ -21,7 +21,7 @@ class LipanaMpesaPpassword:
     lipa_time = datetime.now().strftime('%Y%m%d%H%M%S')
     Business_short_code = "174379"
     Test_c2b_shortcode = "600344"
-    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+    passkey = os.environ.get('PASSKEY')
     
     data_to_encode = Business_short_code + passkey + lipa_time
     
