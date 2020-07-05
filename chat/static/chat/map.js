@@ -8,7 +8,7 @@ navigator.geolocation.watchPosition(function(location) {
     //};
 
     const mapSocket = new WebSocket(
-        'ws://'
+        'wss://'
         + window.location.host
         + '/ws/map/'
         + roomName
