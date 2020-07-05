@@ -82,12 +82,16 @@ WSGI_APPLICATION = 'nilishe.wsgi.application'
 
 ASGI_APPLICATION = 'nilishe.routing.application'
 
+from urllib.parse import urlparse
+
+redis_url = urlparse(os.environ.get('REDIS_URL'))
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-            #"hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            #"hosts": [('127.0.0.1', 6379)],
+            "hosts": [os.environ.get('REDIS_URL')],
         },
     },
 }
