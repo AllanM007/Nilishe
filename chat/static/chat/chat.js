@@ -1,12 +1,12 @@
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
-    //if (window.location.protocol == "https:") {
-    //    var ws_scheme = "wss://";
-    //} else {
-    //    var ws_scheme = "ws://"
-    //};
+    if (window.location.protocol == "https:") {
+        var ws_scheme = "wss://";
+    } else {
+        var ws_scheme = "ws://"
+    };
     
     const chatSocket = new WebSocket(
-        'wss://'
+        ws_scheme
         + window.location.host
         + '/ws/chat/'
         + roomName
