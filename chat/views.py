@@ -6,7 +6,7 @@ def index(request):
 
 	return render(request, 'chat/index.html')
 
-@login_required
+#@login_required
 def room(request, room_name):
     
     return render(request, 'chat/room.html', {

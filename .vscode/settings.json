@@ -6,6 +6,7 @@
         "djgeojson",
         "getenv",
         "nilishe",
-        "strftime"
+        "strftime",
+        "waypoints"
     ]
 }
