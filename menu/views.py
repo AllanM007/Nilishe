@@ -69,11 +69,15 @@ def cart(request):
     total = 0
     count = 0
     
+    #calculate total order value
     for order in orders:
         total += order.pizza.price * order.quantity
         count += order.quantity
     
-    #Indentation needs to be offset by one level from here on
+    cartid = cart.identifier
+
+    request.session['cartid'] = cartid
+    
     context = {
         'ident': cart,
         'cart': orders,

@@ -42,6 +42,10 @@ def rev_comment(request, pk):
     
     user = UserProfile.objects.get(pk=pk)
 
+    cartid = request.session['cartid']
+
+    print(cartid)
+
     # Comment posted
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -54,7 +58,7 @@ def rev_comment(request, pk):
             )
             review.save()
 
-            return redirect('payments:receipt', pk=pk)
+            return redirect('map', room_name=cartid)
 
     else:
         form = ReviewForm()
