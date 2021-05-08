@@ -40,7 +40,6 @@ def pizza(request):
 
 	return render(request, 'menu/pizza.html', {'form':form})
 
-@login_required
 def add_to_cart(request, pizza_id):
     pizza = get_object_or_404(Pizza, pk=pizza_id)
     cart,created = Cart.objects.get_or_create(user=request.user)
@@ -50,7 +49,6 @@ def add_to_cart(request, pizza_id):
     messages.success(request, "Cart updated!")
     return redirect('menu:cart')
 
-@login_required
 def remove_from_cart(request, pizza_id):
     try:
         pizza = Pizza.objects.get(pk = pizza_id)
