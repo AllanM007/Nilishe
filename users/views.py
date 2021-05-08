@@ -31,13 +31,13 @@ def log_in(request):
     return render(request, 'users/login.html', {'form': form})
 
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def log_out(request):
     logout(request)
     return redirect(reverse('users:login'))
 
 
-@login_required
+#@login_required
 def rev_comment(request, pk):
     
     user = UserProfile.objects.get(pk=pk)
