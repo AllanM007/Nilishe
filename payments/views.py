@@ -17,7 +17,7 @@ import requests
 import json
 import os
 
-@login_required
+#@login_required
 def lipa_na_mpesa_online(request, pk):
 
     deliver = UserProfile.objects.get(pk=pk)
@@ -66,14 +66,14 @@ def lipa_na_mpesa_online(request, pk):
 
     return render(request, 'payments/checkout.html', {'deliver':deliver})
 
-@login_required
+#@login_required
 def payment_confirmation(request,pk):
     
     deliver = UserProfile.objects.get(pk=pk)
 
     return render(request, 'payments/payment.html', {'deliver':deliver}) 
 
-@login_required
+#@login_required
 def receipt(request, pk):
     
     deliver = UserProfile.objects.get(pk=pk)
