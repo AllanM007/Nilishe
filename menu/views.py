@@ -40,6 +40,7 @@ def pizza(request):
 
 	return render(request, 'menu/pizza.html', {'form':form})
 
+@login_required
 def add_to_cart(request, pizza_id):
     pizza = get_object_or_404(Pizza, pk=pizza_id)
     cart,created = Cart.objects.get_or_create(user=request.user)
