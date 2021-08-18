@@ -10,8 +10,8 @@
 <div class="row row-cols-1 row-cols-md-3">
     {% for pizza in pizzas %}
   <div class="col mb-4">
-    <div class="card h-100">
-      <img src="{{ pizza.image.url }}" class="card-img-top" alt="...">
+    <div class="card h-10">
+      <img class="card-img-top" src="//placeimg.com/290/180/any" alt="Card image cap"> <!--img src="{{ pizza.image.url }}" class="card-img-top" alt="..."-->
       <div class="card-body">
         <h5 class="card-title">Size - {{ pizza.size }}</h5>
         <p class="card-text">Topping - {{ pizza.topping }}</p>

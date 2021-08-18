@@ -67,11 +67,14 @@ def cart(request):
     orders = PizzaOrder.objects.filter(cart=cart)
     total = 0
     count = 0
+    item_total = 0
     
     #calculate total order value
     for order in orders:
         total += order.pizza.price * order.quantity
         count += order.quantity
+        item_total = order.pizza.price * order.quantity
+        
     
     cartid = cart.identifier
 
@@ -82,5 +85,6 @@ def cart(request):
         'cart': orders,
         'total': total,
         'count': count,
+        'item_total': item_total
     }
     return render(request, 'menu/cart.html', context)

@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="{% static 'mpesa/receipt.css' %}">
+	<link rel="stylesheet" href="{% static 'menu/cart.css' %}">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js" ></script>
 	<title>Cart</title>
 </head>
@@ -18,40 +19,95 @@
 		{% endfor %}
 	</ul>
 	{% endif %}
-	<div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
-		<div style="text-align:center;text-decoration:underline"><h3>Confirm your Order</h3></div>
-			<div class="cart_container">
-			{% for item in cart %}
-				<div class="cart_item">
-					<div class="cart_listing">
-						<span class="title">{{ item.pizza.size }}</span><br>
-						<span>{{ item.pizza.topping }}</span><br>
-						<span>{{ item.pizza.sauce }}</span><br>
-					</div>
-					<div class="cart_price">
-						<span class="cart_quantity">{{ item.quantity }} x ksh <span class="cart_value">{{ item.pizza.price }}</span></span>
-						Quantity: <a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
-						<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
-					</div><br>
-				</div>
-			{% empty %}
-				<div>
-				There are no items in your cart.
-				</div>
-			{% endfor %}<br>
-			<h4>Your order number is : {{ ident.identifier }}</h4>
-			<div class="cart_total">
-				<h4> Total: ksh <span class="cart_value">{{ total }}</span></h4>
-			</div><br>
-			<article>Checkout</article>
-			<a href="{% url 'payments:lipa' user.pk %}"><button class="btn btn-primary">Checkout</button></a><br>
-			<article>Back To Menu</article>
-			<a href="{% url 'menu:menu' %}"><button class="btn btn-primary">Menu</button></a><br>
-			<!--article>Chat</article>
-			<a href="{% url 'chat:room' ident.identifier %}"><button class="btn btn-primary">Chat</button></a><br>
-			<article>Chat</article>
-			<a href="{% url 'map' ident.identifier %}"><button class="btn btn-primary">Chat</button></a><br-->
-		</div>
+	<div class="cart-wrap">
+		<div class="container">
+	        <div class="row">
+			    <div class="col-lg-8">
+			        <div class="main-heading">Shopping Cart</div>
+			        <div class="table-cart">
+	                    <table>
+	                        <thead>
+	                            <tr>
+	                                <th>Product</th>
+	                                <th>Quantity</th>
+	                                <th>Total</th>
+	                                <th></th>
+	                            </tr>
+	                        </thead>
+							{% for item in cart %}
+	                        <tbody>
+	                            <tr>
+	                                <td>
+	                                	<div class="display-flex align-center">
+		                                    <!-- <div class="img-product">
+		                                        <img src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg" alt="" class="mCS_img_loaded">
+		                                    </div> -->
+		                                    <div class="name-product">
+		                                        <span class="title">{{ item.pizza.size }}</span><br>
+												<span>{{ item.pizza.topping }}</span><br>
+												<span>{{ item.pizza.sauce }}</span><br>
+		                                    </div>
+		                                    <div class="price">
+												<!-- <span class="cart_quantity">{{ item.quantity }} x ksh <span class="cart_value">{{ item.pizza.price }}</span></span> -->
+		                                    </div>
+	                                    </div>
+	                                </td>
+	                                <td class="product-count">
+										<a href="{% url 'menu:add_to_cart' item.pizza.id %}">[+]</a> / 
+										<a href="{% url 'menu:remove_from_cart' item.pizza.id %}">[-]</a>
+	                                </td>
+	                                <td>
+	                                    <div class="total">
+	                                        {{ item.quantity }} * Ksh{{ item.pizza.price }}
+	                                    </div>
+	                                </td>
+	                                <td>
+	                                    <a href="#" title="">
+	                                        <img src="images/icons/delete.png" alt="" class="mCS_img_loaded">
+	                                    </a>
+	                                </td>
+	                            </tr>	                             
+	                        </tbody>
+							{% empty %}
+							<div>
+								There are no items in your cart
+							</div>
+							{% endfor %}
+							<h4>Your order number is : {{ ident.identifier }}</h4>
+	                    </table>
+			        </div>
+			        <!-- /.table-cart -->
+			    </div>
+			    <!-- /.col-lg-8 -->
+			    <div class="col-lg-4">
+			        <div class="cart-totals">
+			            <h3>Cart Totals</h3>
+			            <form action="#" method="get" accept-charset="utf-8">
+			                <table>
+			                    <tbody>
+			                        <tr>
+			                            <td>Subtotal</td>
+			                            <td class="subtotal">{{ total }}</td>
+			                        </tr>
+			                        <tr class="total-row">
+			                            <td>Total</td>
+			                            <td class="price-total">{{ total }}</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			                <div class="btn-cart-totals">
+			                    <a href="{% url 'menu:menu' %}" class="update round-black-btn" title="">Back To Menu</a>
+			                    <a href="{% url 'payments:lipa' user.pk %}" class="checkout round-black-btn" title="">Proceed to Checkout</a>
+								<br>
+			                </div>
+			                <!-- /.btn-cart-totals -->
+			            </form>
+			            <!-- /form -->
+			        </div>
+			        <!-- /.cart-totals -->
+			    </div>
+			    <!-- /.col-lg-4 -->
+			</div>
 		</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
